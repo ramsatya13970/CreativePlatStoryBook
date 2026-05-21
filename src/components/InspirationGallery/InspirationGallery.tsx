@@ -1,5 +1,5 @@
 
-const images=Array.from({length:12},(_,i)=>({id:i,src:`https://picsum.photos/500/300?random=${i}`}))
+const images=Array.from({length:12},(_,i)=>({id:i,src:`/images/dummy-gallery-${(i % 6) + 1}.svg`}))
 export default function InspirationGallery(){
 return (<section className="section"><h2 style={{textAlign:'center',marginBottom:'40px'}}>Activation Inspiration</h2>
 <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(250px,1fr))',gap:'20px'}}>
