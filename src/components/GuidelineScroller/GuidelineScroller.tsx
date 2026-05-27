@@ -1,10 +1,6 @@
+import { motion } from 'framer-motion'
 import type { GuidelinePage } from '../../App'
-
-const items = [
-  { title: 'Visual Guidelines', page: 'visual' },
-  { title: 'Copy Guidelines', page: 'copy' },
-  { title: "Do's & Don'ts", page: 'dos-donts' },
-] satisfies Array<{ title: string; page: GuidelinePage }>
+import { guidelines } from '../../content'
 
 type GuidelineScrollerProps = {
   onSelectGuideline: (page: GuidelinePage) => void
@@ -12,27 +8,29 @@ type GuidelineScrollerProps = {
 
 export default function GuidelineScroller({ onSelectGuideline }: GuidelineScrollerProps) {
   return (
-    <section className="section">
-      <h2 style={{ marginBottom: '30px' }}>Guidelines</h2>
-      <div style={{ display: 'flex', gap: '20px', overflowX: 'auto' }}>
-        {items.map((item) => (
-          <button
+    <section className="section guidelines-section" id="guidelines">
+      <div className="section-heading compact">
+        <p className="eyebrow">Guidelines</p>
+        <h2>Choose a lane and keep the work aligned.</h2>
+      </div>
+      <div className="guideline-grid">
+        {guidelines.map((item, index) => (
+          <motion.button
             key={item.title}
             type="button"
             onClick={() => onSelectGuideline(item.page)}
-            className="card guideline-button"
-            style={{
-              minWidth: '320px',
-              height: '220px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '1.5rem',
-              fontWeight: 'bold',
-            }}
+            className="guideline-card"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -8 }}
+            transition={{ delay: index * 0.08 }}
+            viewport={{ once: true, amount: 0.3 }}
           >
-            {item.title}
-          </button>
+            <img src={item.image} alt="" />
+            <span>{item.eyebrow}</span>
+            <h3>{item.title}</h3>
+            <p>{item.summary}</p>
+          </motion.button>
         ))}
       </div>
     </section>

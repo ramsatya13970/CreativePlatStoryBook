@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300" role="img" aria-label="Dummy activation image 3">
+  <rect width="500" height="300" fill="#202124"/>
+  <rect x="46" y="42" width="150" height="216" rx="16" fill="#f26a4f"/>
+  <rect x="218" y="42" width="236" height="96" rx="16" fill="#ffffff" opacity=".9"/>
+  <rect x="218" y="162" width="236" height="96" rx="16" fill="#90a955"/>
+  <circle cx="120" cy="150" r="42" fill="#ffffff" opacity=".7"/>
+</svg>

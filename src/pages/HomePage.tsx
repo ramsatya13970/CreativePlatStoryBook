@@ -11,4 +11,9 @@ type HomePageProps = {
 }
 
 export default function HomePage({ onSelectGuideline }: HomePageProps){
-return <><HeroVideo/><IntroSection/><GuidelineScroller onSelectGuideline={onSelectGuideline}/><WhyPlatform/><InspirationGallery/></>}
+  const handleNavigate = (target: string) => {
+    document.getElementById(target)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  return <><HeroVideo onNavigate={handleNavigate}/><IntroSection/><GuidelineScroller onSelectGuideline={onSelectGuideline}/><WhyPlatform/><InspirationGallery/></>
+}

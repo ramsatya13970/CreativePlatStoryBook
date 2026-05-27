@@ -1,13 +1,52 @@
-export default function HeroVideo() {
+import { motion } from 'framer-motion'
+import { navItems, photos } from '../../content'
+
+type HeroVideoProps = {
+  onNavigate: (target: string) => void
+}
+
+export default function HeroVideo({ onNavigate }: HeroVideoProps) {
   return (
-    <section style={{ position: 'relative', height: '100vh', overflow: 'hidden' }}>
-      <img src="/videos/dummy-hero-video.svg" alt="" style={{ width:'100%', height:'100%', objectFit:'cover' }} />
-      <div style={{ position:'absolute', inset:0, background:'rgba(0,0,0,0.45)', display:'flex', alignItems:'center', justifyContent:'center', textAlign:'center', color:'white' }}>
-        <div>
-          <h1 style={{ fontSize:'4rem', marginBottom:'20px' }}>Moments you can't get with a click</h1>
-          <h2 style={{ fontSize:'2rem' }}>Creative Platform</h2>
+    <section className="hero">
+      <img className="hero__image" src={photos.hero} alt="" />
+      <div className="hero__scrim" />
+
+      <motion.nav
+        className="top-nav"
+        initial={{ y: -28, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+      >
+        <button className="brand-mark" type="button" onClick={() => onNavigate('top')}>IC Creative Platform</button>
+        <div className="nav-links">
+          {navItems.map((item) => (
+            <button key={item.target} type="button" onClick={() => onNavigate(item.target)}>
+              {item.label}
+            </button>
+          ))}
         </div>
+      </motion.nav>
+
+      <div className="hero__content" id="top">
+        <motion.p className="eyebrow" initial={{ y: 18 }} animate={{ y: 0 }} transition={{ delay: 0.2 }}>
+          Creative Platform
+        </motion.p>
+        <motion.h1 initial={{ y: 32 }} animate={{ y: 0 }} transition={{ delay: 0.32, duration: 0.8 }}>
+          Moments you can't get with a click
+        </motion.h1>
+        <motion.p className="hero__lead" initial={{ y: 24 }} animate={{ y: 0 }} transition={{ delay: 0.5, duration: 0.8 }}>
+          A single creative system for turning retail, product, people, and seasonal energy into memorable moments of togetherness.
+        </motion.p>
+        <motion.div className="hero__actions" initial={{ y: 16 }} animate={{ y: 0 }} transition={{ delay: 0.68 }}>
+          <button type="button" className="primary-button" onClick={() => onNavigate('guidelines')}>Explore Guidelines</button>
+          <button type="button" className="ghost-button" onClick={() => onNavigate('inspiration')}>View Inspiration</button>
+        </motion.div>
       </div>
+
+      <motion.div className="hero__ticker" animate={{ x: ['0%', '-50%'] }} transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}>
+        <span>Moment</span><span>Togetherness</span><span>Retail Energy</span><span>Seasonal Sparks</span>
+        <span>Moment</span><span>Togetherness</span><span>Retail Energy</span><span>Seasonal Sparks</span>
+      </motion.div>
     </section>
   )
 }
